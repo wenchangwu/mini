@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping map-empty-string="false" map-null="false" >
+		<class-a>com.lakala.core.dto.PageDTO</class-a>
+		<class-b>com.lakala.core.support.query.Page</class-b>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.lakala.mini.server.core.domain.LoginMiniUser</class-a>
+		<class-b>com.lakala.mini.dto.UserMiniInfosDTO</class-b>
+		<field>
+			<a>cardUsers</a>
+			<b>userMiniInfos</b>
+		</field>
+	</mapping>
+	<mapping>
+		<class-a>com.lakala.mini.server.core.domain.CardUser</class-a>
+		<class-b>com.lakala.mini.dto.UserMiniInfoDTO</class-b>
+		<field>
+			<a>telNo</a>
+			<b>phoneNum</b>
+		</field>
+		<field><a>psamNo</a><b>psamNo</b></field>
+		<field><a>bindingDate</a><b>bindDate</b></field>
+		<field><a>auditingState</a><b>status</b></field>
+		<field><a>cardInfo.cardNo</a><b>userCardNum</b></field>
+		<field><a>cardInfo.type</a><b>type</b></field>
+		<field><a>cardInfo.status</a><b>cardStatus</b></field>
+	</mapping>
+	<mapping map-empty-string="false" map-null="false" type="one-way">
+		<class-a>com.lakala.core.dto.PageResultDTO</class-a>
+		<class-b>com.lakala.core.support.query.Page</class-b>
+		<field>
+			<a>totalCount</a>
+			<b>totalRow</b>
+		</field>
+		<field>
+			<a>pageStart</a>
+			<b>pageStart</b>
+		</field>
+		<field>
+			<a>pageSize</a>
+			<b>pageSize</b>
+		</field>
+	</mapping>
+	
+	<mapping map-empty-string="false" map-null="false" type="one-way">
+		<class-a>com.lakala.core.support.query.Page</class-a>
+		<class-b>com.lakala.core.dto.PageResultDTO</class-b>
+		<field>
+			<a>totalRow</a>
+			<b>totalCount</b>
+		</field>
+		<field>
+			<a>pageStart</a>
+			<b>pageStart</b>
+		</field>
+		<field>
+			<a>pageSize</a>
+			<b>pageSize</b>
+		</field>
+		<field>
+			<a get-method="getTotalPage">totalPage</a>
+			<b>totalPage</b>
+		</field>
+		<field>
+			<a get-method="getCurrentPage">currentPage</a>
+			<b>pageNo</b>
+			
+		</field>
+	</mapping>
+</mappings>
+

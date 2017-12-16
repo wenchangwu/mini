@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping map-empty-string="false" map-null="false">
+		<class-a>com.lakala.ca.dto.organization.CardOrganizationDTO</class-a>
+		<class-b>com.lakala.mini.server.core.domain.CardOrg</class-b>
+		<field>
+			<a>description</a>
+			<b>desc</b>
+		</field>
+	</mapping>
+
+
+
+	<mapping map-empty-string="false" map-null="false">
+		<class-a>com.lakala.ca.dto.organization.CardOrganizationsDTO</class-a>
+		<class-b>com.lakala.core.support.query.Pagination</class-b>
+		<field>
+			<a>cardOrganizations</a>
+			<b>data</b>
+			<a-hint>com.lakala.ca.dto.organization.CardOrganizationDTO</a-hint>
+			<b-hint>com.lakala.mini.server.core.domain.CardOrg</b-hint>
+		</field>
+		<field>
+			<a>pageResult</a>
+			<b>page</b>
+		</field>
+	</mapping>
+	
+	<mapping map-empty-string="false" map-null="false">
+		<class-a>com.lakala.mini.server.core.domain.ViewPsamNo</class-a>
+		<class-b>com.lakala.mini.dto.card.CardInfoDTO</class-b>
+		<field>
+			<a>cardInfoId</a>
+			<b>id</b>
+		</field>
+	</mapping>
+	<mapping map-empty-string="false" map-null="false">
+		<class-a>com.lakala.mini.server.core.domain.ViewPsamNo</class-a>
+		<class-b>com.lakala.mini.dto.card.CardUserDTO</class-b>
+		<field>
+			<a>cardUserId</a>
+			<b>id</b>
+		</field>
+	</mapping>
+	<mapping map-empty-string="false" map-null="false">
+		<class-a>com.lakala.mini.dto.RuleParamsDTO</class-a>
+		<class-b>com.lakala.core.support.query.Pagination</class-b>
+		<field>
+			<a>data</a>
+			<b>data</b>
+			<a-hint>com.lakala.mini.dto.RuleParamDTO</a-hint>
+			<b-hint>com.lakala.mini.server.core.domain.CardOrgRuleParam</b-hint>
+		</field>
+		<field>
+			<a>pageResultDTO</a>
+			<b>page</b>
+		</field>
+	</mapping>
+	<mapping map-empty-string="false" map-null="false" type="one-way">
+		<class-a>com.lakala.mini.server.core.domain.CardOrgRuleParam</class-a>
+		<class-b>com.lakala.mini.dto.RuleParamDTO</class-b>
+		<field>
+			<a>rule.ruleName</a>
+			<b>ruleName</b>
+		</field>
+	</mapping>
+	<mapping map-empty-string="false" map-null="false" type="one-way">
+		<class-a>com.lakala.mini.server.core.domain.ViewPsamNo</class-a>
+		<class-b>com.lakala.mini.dto.CustomerInfoDTO</class-b>
+		<field>
+			<a>bindingTelNo</a>
+			<b>bindingTelNo</b>
+		</field>
+		<field>
+			<a>psamNo</a>
+			<b>psam</b>
+		</field>
+		<field>
+			<a>selfOpenDate</a>
+			<b>openDateTime</b>
+		</field>
+		<field>
+			<a>telAreaNo</a>
+			<b>openLocation</b>
+		</field>
+		<field>
+			<a>cardUserExtInfo.telecomOperators</a>
+			<b>openMobileMobileOpt</b>
+		</field>
+		<field>
+			<a>cardUserExtInfo.mobilePhoneNum</a>
+			<b>openMobileModel</b>
+		</field>
+		<field>
+			<a>cardUserExtInfo.mobilePhoneModel</a>
+			<b>openMobileModel</b>
+		</field>
+		<field>
+			<a>cardUserExtInfo.mobilePhoneManuFacturer</a>
+			<b>openMobileManufacturer</b>
+		</field>
+		<field>
+			<a>cardUserExtInfo.mobilePhoneModel</a>
+			<b>openMobileModel</b>
+		</field>
+		<field>
+			<a>cardUserExtInfo.mobilePhoneNum</a>
+			<b>openMobileNum</b>
+		</field>
+		<field>
+			<a>psamState</a>
+			<b>openState</b>
+		</field>
+	</mapping>
+	<mapping map-empty-string="false" map-null="false" type="one-way">
+		<class-a>com.lakala.mini.server.core.domain.CardInfo</class-a>
+		<class-b>com.lakala.mini.dto.CustomerInfoDTO</class-b>
+		<field>
+			<a>rule.ruleName</a>
+			<b>orgCardRuleName</b>
+		</field>
+	</mapping>
+	<mapping map-empty-string="false" map-null="false" type="one-way">
+		<class-a>com.lakala.ca.dto.UserDTO</class-a>
+		<class-b>com.lakala.mini.dto.CustomerInfoDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>customerId</b>
+		</field>
+		<field>
+			<a>mobileNum</a>
+			<b>customerMobileNum</b>
+		</field>
+		<field>
+			<a>realname</a>
+			<b>customerRealname</b>
+		</field>
+		<field>
+			<a>lastLoginDate</a>
+			<b>customerLastLoginDateTime</b>
+		</field>
+		<field>
+			<a>idCardInfo.idCardId</a>
+			<b>customerIdCardId</b>
+		</field>
+		<field>
+			<a get-method="isIdCardIdAvailable">isIdCardIdAvailable</a>
+			<b>customerRealNameAuthStatus</b>
+		</field>
+		<field>
+			<a>address</a>
+			<b>customerAddr</b>
+		</field>
+	</mapping>
+	<mapping map-empty-string="false" map-null="false" type="one-way">
+		<class-a>com.lakala.enquire.api.dto.TermInfoDTO</class-a>
+		<class-b>com.lakala.mini.dto.CustomerInfoDTO</class-b>
+		<field>
+			<a>limitInfo.limitOutCardCount</a>
+			<b>dealCardLimit</b>
+		</field>
+		<field>
+			<a>lastDealDateTime</a>
+			<b>lastDealDateTime</b>
+		</field>
+		<field >
+			<a>outCardRecode</a>
+			<b>dealCardNo</b>
+			<b-hint>java.lang.String</b-hint> 
+		</field>
+		
+	</mapping>
+	<mapping map-empty-string="false" map-null="false" type="one-way">
+		<class-a>com.lakala.mini.server.core.domain.CardOrg</class-a>
+		<class-b>com.lakala.mini.dto.CustomerInfoDTO</class-b>
+		<field >
+			<a>id</a>
+			<b>ogId</b>
+			
+		</field>
+		<field >
+			<a>name</a>
+			<b>ogName</b>
+			
+		</field>
+		<field >
+			<a>code</a>
+			<b>ogCode</b>
+			
+		</field>
+		
+	</mapping>
+	<mapping map-empty-string="false" map-null="false" type="one-way">
+		<class-a>com.lakala.mini.server.core.domain.CardInfo</class-a>
+		<class-b>com.lakala.mini.dto.UserMiniInfoDTO</class-b>
+		<field >
+			<a>cardUser</a>
+			<b>this</b>
+		</field>
+		<field >
+			<a>cardNo</a>
+			<b>userCardNum</b>
+		</field>
+		<field >
+			<a>cardNo</a>
+			<b>userCardNum</b>
+		</field>
+		<field >
+			<a>status</a>
+			<b>cardStatus</b>
+		</field>
+		<field >
+			<a>status</a>
+			<b>cardStatus</b>
+		</field>
+	</mapping>
+</mappings>
+
