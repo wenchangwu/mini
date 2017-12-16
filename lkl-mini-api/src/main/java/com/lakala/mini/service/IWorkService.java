@@ -3,20 +3,14 @@
  */
 package com.lakala.mini.service;
 
+import com.lakala.mini.dto.work.*;
+import org.apache.cxf.annotations.WSDLDocumentation;
+import org.apache.cxf.annotations.WSDLDocumentation.Placement;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
-
-import org.apache.cxf.annotations.WSDLDocumentation;
-import org.apache.cxf.annotations.WSDLDocumentation.Placement;
-
-import com.lakala.mini.dto.work.ImportMiniUserRequestType;
-import com.lakala.mini.dto.work.ImportMiniUserResponseType;
-import com.lakala.mini.dto.work.ImportSUUserRequestType;
-import com.lakala.mini.dto.work.ImportSUUserResponseType;
-import com.lakala.mini.dto.work.ImportUserRequestType;
-import com.lakala.mini.dto.work.ImportUserResponseType;
 
 /**
  * 综合作业系统提供的服务接口

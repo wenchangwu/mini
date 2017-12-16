@@ -18,6 +18,11 @@
             <groupId>com.lakala.mini</groupId>
             <artifactId>lkl-mini-server-core</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.lakala.commons</groupId>
+            <artifactId>lkl-commons-cxf</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

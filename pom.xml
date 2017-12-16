@@ -30,6 +30,10 @@
         <java.version>1.7</java.version>
         <lkl.commons.core.version>1.0.1.1</lkl.commons.core.version>
         <lkl.commons.version>1.0.1.1</lkl.commons.version>
+        <com.lakala.sms.version>1.0.0</com.lakala.sms.version>
+        <commons.version>1.4</commons.version>
+        <dubbo.version>2.5.8</dubbo.version>
+        <cxf.version>3.1.12</cxf.version>
     </properties>
 
     <dependencyManagement>
@@ -56,6 +60,12 @@
                 <groupId>com.lakala.commons</groupId>
                 <artifactId>lkl-commons-core</artifactId>
                 <version>${lkl.commons.core.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hibernate.javax.persistence</groupId>
+                        <artifactId>hibernate-jpa-2.0-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.lakala.commons</groupId>
@@ -85,6 +95,10 @@
                         <groupId>org.springframework</groupId>
                         <artifactId>spring-asm</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.cxf</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -102,6 +116,11 @@
                         <artifactId>*</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.lakala.sms</groupId>
+                <artifactId>lkl-sms-api</artifactId>
+                <version>${com.lakala.sms.version}</version>
             </dependency>
             <dependency>
                 <groupId>net.sf.oval</groupId>
@@ -129,7 +148,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-envers</artifactId>
-                <version>3.6.10.Final</version>
+                <version>5.0.12.Final</version>
             </dependency>
             <dependency>
                 <groupId>com.oracle</groupId>
@@ -141,9 +160,60 @@
                 <artifactId>druid</artifactId>
                 <version>1.0.16</version>
             </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-frontend-simple</artifactId>
+                <version>${cxf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-transports-http</artifactId>
+                <version>${cxf.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>0.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lakala.commons</groupId>
+                <artifactId>lkl-commons-cxf</artifactId>
+                <version>1.3.1</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.cxf</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>5.0.12.Final</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
+
 
     <profiles>
         <profile>
@@ -177,6 +247,4 @@
             </pluginRepositories>
         </profile>
     </profiles>
-
-
 </project>

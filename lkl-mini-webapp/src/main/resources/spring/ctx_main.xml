@@ -3,13 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<import resource="ctx_resources.xml"/>
-	<import resource="ctx_datasource.xml"/>
-	<import resource="ctx_tx.xml"/>
-	<import resource="ctx_component.xml"/>    
-	<import resource="ctx_dao.xml"/>
 	<import resource="ctx_service.xml"/>
-    <import resource="ctx_task.xml"/>
-    <import resource="ctx_rmi.xml"/>
-	<import resource="ctx_dubbo_wsdl_provider.xml"/>
+
 </beans>

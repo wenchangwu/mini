@@ -3,21 +3,19 @@
  */
 package com.lakala.mini.service;
 
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
-import javax.jws.WebService;
-
-import org.apache.cxf.annotations.WSDLDocumentation;
-import org.apache.cxf.annotations.WSDLDocumentation.Placement;
-
 import com.lakala.common.exception.ApplicationException;
 import com.lakala.common.exception.ServiceException;
 import com.lakala.core.dto.ApplicationContext;
 import com.lakala.mini.dto.PsamInfoDTO;
-import com.lakala.mini.dto.UserMiniInfoDTO;
 import com.lakala.mini.dto.UserMiniInfosDTO;
 import com.lakala.mini.dto.card.UDServiceRequestDTO;
 import com.lakala.mini.dto.card.UDServiceRequestExtDTO;
+import org.apache.cxf.annotations.WSDLDocumentation;
+import org.apache.cxf.annotations.WSDLDocumentation.Placement;
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebService;
 
 /**
  * 超级U盾服务接口
@@ -114,7 +112,7 @@ public interface IUDService {
 	/**
 	 * 重新启用U盾（出现在挂失后，找回U盾的业务场景），需验证原先的密码
 	 * @param psamNo      U盾PSAM卡号
-	 * @param passwd	  密码 
+	 * @param passwd	  密码
 	 * @param context
 	 * @return 返回码  00表示成功
 	 * @throws ServiceException,ApplicationException
@@ -159,7 +157,7 @@ public interface IUDService {
 			throws ServiceException,ApplicationException;
 	/**
 	 * 用户绑定的U盾终端列表
-	 * 
+	 *
 	 * @param uid
 	 * @param context
 	 * @return
@@ -170,7 +168,7 @@ public interface IUDService {
 			throws ServiceException;
 	/**
 	 * 用户绑定的终端列表,根据输入的类型
-	 * 
+	 *
 	 * @param uid
 	 * @param cardType 卡类型见CardType类，如果需返回所有终端，cardType设置为-1
 	 * @param context
@@ -181,7 +179,7 @@ public interface IUDService {
                                                       @WebParam(name = "cardType") int cardType,
                                                       @WebParam(name = "context") ApplicationContext context)
 			throws ServiceException;
-	
+
 	/**
 	 * 根据psamNo获取终端信息
 	 * @since 1.5.0
@@ -193,7 +191,7 @@ public interface IUDService {
 	public PsamInfoDTO getTerminalInfoByPsam(@WebParam(name = "psam") String psamNo,
                                              @WebParam(name = "context") ApplicationContext context)
 			throws ServiceException;
-	
+
 	/**
 	 * 判断U盾PSAM卡号是否已经被绑定到用户
 	 * @param psamNo
@@ -269,7 +267,7 @@ public interface IUDService {
 	public String getLineNo(
             @WebParam(name = "udServiceRequestDTO") UDServiceRequestDTO requestDTO,
             @WebParam(name = "context") ApplicationContext context)throws ServiceException,ApplicationException;
-	
+
 	/**
 	 * 根据PSAM卡号判断该终端是否可以被转赠
 	 * @param requestDTO 请求参数(psamNo必填)
@@ -298,7 +296,7 @@ public interface IUDService {
             @WebParam(name = "udServiceRequestExtDTO") UDServiceRequestExtDTO requestExtDTO,
             @WebParam(name = "context") ApplicationContext context)
 			throws ServiceException, ApplicationException;
-	
+
 	@WebMethod(operationName = "InitTDTerminal")
 	public String initTDTerminal(
             @WebParam(name = "udServiceRequestDTO") UDServiceRequestDTO requestDTO,
@@ -320,7 +318,7 @@ public interface IUDService {
             @WebParam(name = "udServiceRequestDTO") UDServiceRequestDTO requestDTO,
             @WebParam(name = "udServiceRequestExtDTO") UDServiceRequestExtDTO requestExtDTO,
             @WebParam(name = "context") ApplicationContext context)throws ServiceException,ApplicationException;
-	
+
 	/**
 	 * 直接转赠U盾。对UnBindUDToUser和BindUDToUser的封装
 	 * @param fromuid 原来所有人的id

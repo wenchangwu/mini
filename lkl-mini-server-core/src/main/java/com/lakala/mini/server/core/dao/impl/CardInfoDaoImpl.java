@@ -7,6 +7,7 @@ import com.lakala.mini.server.core.dao.ICardInfoDAO;
 import com.lakala.mini.server.core.domain.CardInfo;
 import com.lakala.mini.server.core.domain.CardOrg;
 import com.lakala.mini.server.core.domain.CardResource;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

@@ -7,6 +7,7 @@ import com.lakala.mini.server.core.domain.CardInfoHis;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;

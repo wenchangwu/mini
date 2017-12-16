@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+
+		http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd">
+	<bean id="cxfIgnoreUnexpectedElementsHandler" class="com.lakala.common.cxf.validationeventhandler.IgnoreUnexpectedElementsHandler" />
+	<http-conf:conduit name="{importUser}importUserPortTypePort.http-conduit">
+		<http-conf:client ReceiveTimeout="5000" ConnectionTimeout="5000"/>
+	</http-conf:conduit>
+	<!-- 自动装配com.lakala.mini.server.core.service.impl目录下的服务 -->
+	
+
+
+	<bean id="ovalGuardInterceptor" class="net.sf.oval.guard.GuardInterceptor" />
+
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="proxyTargetClass" value="true" />
+		<property name="beanNames" value="cardManagerGateway" />
+		<property name="interceptorNames">
+			<list>
+				<value>ovalGuardInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="orgnizationService" class="com.lakala.ca.service.IOrganizationService"
+		factory-bean="organizationServiceFactory" factory-method="create" />
+	<bean id="organizationServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.lakala.ca.service.IOrganizationService" />
+		<property name="address" value="${ws.organizationService.address}" />
+		<property name="properties">
+			<map>
+				<entry key="jaxb-validation-event-handler" value-ref="cxfIgnoreUnexpectedElementsHandler" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="workService" class="com.lakala.mini.service.IWorkService"
+		factory-bean="workClientFactory" factory-method="create" />
+	<bean id="workClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.lakala.mini.service.IWorkService" />
+		<property name="address" value="${ws.importUserService.address}" />
+	</bean>
+
+
+	<bean id="smsService" class="com.lakala.sms.service.ISmsService" factory-bean="smsServiceFactory"
+		factory-method="create" />
+	<bean id="smsServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.lakala.sms.service.ISmsService" />
+		<property name="address" value="${ws.smsService.address}" />
+	</bean>
+
+
+	<bean id="userService" class="com.lakala.ca.service.IUserService"
+		factory-bean="userServiceFactory" factory-method="create" />
+
+	<bean id="userServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.lakala.ca.service.IUserService" />
+		<property name="address" value="${ws.userService.address}" />
+		<property name="properties">
+			<map>
+				<entry key="jaxb-validation-event-handler" value-ref="cxfIgnoreUnexpectedElementsHandler" />
+			</map>
+		</property>
+	</bean>
+	<bean id="dealEnquireService" class="com.lakala.enquire.api.service.IDealEnquiryService" factory-bean="dealEnquireServiceFactory"
+		factory-method="create" />
+	<bean id="dealEnquireServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.lakala.enquire.api.service.IDealEnquiryService" />
+		<property name="address" value="${ws.dealEnquireService.address}" />
+	</bean>
+
+
+
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+	
+</beans>

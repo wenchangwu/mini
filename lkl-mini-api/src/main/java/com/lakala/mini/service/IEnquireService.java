@@ -5,18 +5,17 @@
  */
 package com.lakala.mini.service;
 
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
-import javax.jws.WebService;
-
-import org.apache.cxf.annotations.WSDLDocumentation;
-import org.apache.cxf.annotations.WSDLDocumentation.Placement;
-
 import com.lakala.common.exception.ApplicationException;
 import com.lakala.common.exception.ServiceException;
 import com.lakala.core.dto.ApplicationContext;
 import com.lakala.mini.dto.GetUidByPsamNoResponse;
 import com.lakala.mini.dto.UserMiniInfosDTO;
+import org.apache.cxf.annotations.WSDLDocumentation;
+import org.apache.cxf.annotations.WSDLDocumentation.Placement;
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebService;
 
 /**
  *
@@ -47,7 +46,7 @@ public interface IEnquireService {
 
 	/**
 	 * 获取用户psam
-	 * 
+	 *
 	 * @param uid
 	 * @param context
 	 * @return

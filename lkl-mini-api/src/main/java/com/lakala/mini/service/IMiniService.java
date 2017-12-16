@@ -5,53 +5,22 @@
  */
 package com.lakala.mini.service;
 
-import java.util.Date;
-import java.util.List;
+import com.lakala.common.exception.ApplicationException;
+import com.lakala.common.exception.ServiceException;
+import com.lakala.core.dto.ApplicationContext;
+import com.lakala.mini.dto.*;
+import com.lakala.mini.dto.card.*;
+import com.lakala.mini.exception.*;
+import org.apache.cxf.annotations.WSDLDocumentation;
+import org.apache.cxf.annotations.WSDLDocumentation.Placement;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
-
-import org.apache.cxf.annotations.WSDLDocumentation;
-import org.apache.cxf.annotations.WSDLDocumentation.Placement;
-
-import com.lakala.common.exception.ApplicationException;
-import com.lakala.common.exception.ServiceException;
-import com.lakala.core.dto.ApplicationContext;
-import com.lakala.mini.dto.CustomerInfosDTO;
-import com.lakala.mini.dto.GetUidByPsamNoResponse;
-import com.lakala.mini.dto.ManuServiceRequest;
-import com.lakala.mini.dto.ManuServiceResponse;
-import com.lakala.mini.dto.QueryUserInfoRequest;
-import com.lakala.mini.dto.RuleParamDTO;
-import com.lakala.mini.dto.RuleParamQueryDTO;
-import com.lakala.mini.dto.RuleParamsDTO;
-import com.lakala.mini.dto.SaveRuleParamResponse;
-import com.lakala.mini.dto.TransferMiniApplyDTO;
-import com.lakala.mini.dto.TransferMiniApplyResultDTO;
-import com.lakala.mini.dto.TransferMiniOrderDTO;
-import com.lakala.mini.dto.TransferMiniQueryDTO;
-import com.lakala.mini.dto.TransferMiniQueryResultDTO;
-import com.lakala.mini.dto.TransferMiniReviewDTO;
-import com.lakala.mini.dto.UserMiniInfosDTO;
-import com.lakala.mini.dto.card.CardOrgDTO;
-import com.lakala.mini.dto.card.CardOrgQueryDTO;
-import com.lakala.mini.dto.card.CardOrgQueryResultDTO;
-import com.lakala.mini.dto.card.CardOrgRuleResultDTO;
-import com.lakala.mini.dto.card.CardQueryDTO;
-import com.lakala.mini.dto.card.CardQueryResultDTO;
-import com.lakala.mini.dto.card.CardResourceDTO;
-import com.lakala.mini.dto.card.CardTelNoQueryResultDTO;
-import com.lakala.mini.dto.card.SpecialTelNoDTO;
-import com.lakala.mini.dto.card.SpecialTelNoQueryDTO;
-import com.lakala.mini.dto.card.SpecialTelNoQueryResultDTO;
-import com.lakala.mini.exception.NotUserCardOwnerException;
-import com.lakala.mini.exception.TransferMiniException;
-import com.lakala.mini.exception.UserCardNotFoundException;
-import com.lakala.mini.exception.UserCardPasswordException;
-import com.lakala.mini.exception.UserCardUnbindException;
+import java.util.Date;
+import java.util.List;
 
 @WebService(serviceName = "MiniService", name = "MiniService")
 @WSDLDocumentation(value = "Mini用户管理服务", placement = Placement.BINDING)
@@ -72,7 +41,7 @@ public interface IMiniService {
 
 	/**
 	 * 重设密码
-	 * 
+	 *
 	 * @param uid
 	 *            用户id
 	 * @param userCardNum
@@ -85,7 +54,7 @@ public interface IMiniService {
 	 * @throws UserCardPasswordException
 	 * @throws UserCardNotFoundException
 	 * @throws UserCardUnbindException
-	 * @throws NotUserCardOwnerException 
+	 * @throws NotUserCardOwnerException
 	 * @throws ServiceException
 	 */
 	@WebMethod(operationName = "ChangeMiniUserCardPassword")
@@ -95,11 +64,11 @@ public interface IMiniService {
                                @WebParam(name = "newPassword") String newPassword,
                                @WebParam(name = "context") ApplicationContext context)
 			throws ServiceException, UserCardUnbindException,
-			UserCardNotFoundException, UserCardPasswordException, NotUserCardOwnerException;
+            UserCardNotFoundException, UserCardPasswordException, NotUserCardOwnerException;
 
 	/**
 	 * 绑定网站用户和MINI终端用户卡
-	 * 
+	 *
 	 * @param uid
 	 *            用户id
 	 * @param password
@@ -114,7 +83,7 @@ public interface IMiniService {
 	 *         UQ:卡用户不存在<br/>
 	 *         PE:密码不正确<br/>
 	 *         U3:用户卡不存在<br/>
-	 * 
+	 *
 	 * @throws ServiceException
 	 */
 	@WSDLDocumentation(value = "绑定网站用户和MINI终端用户卡", placement = Placement.BINDING)
@@ -127,7 +96,7 @@ public interface IMiniService {
 			throws ServiceException;
 	/**
 	 * 解除绑定网站用户和MINI终端用户卡
-	 * 
+	 *
 	 * @param uid
 	 *            用户id
 	 * @param password
@@ -142,7 +111,7 @@ public interface IMiniService {
 	 *         UQ:卡用户不存在<br/>
 	 *         PE:密码不正确<br/>
 	 *         U3:用户卡不存在<br/>
-	 * 
+	 *
 	 * @throws ServiceException
 	 */
 	@WSDLDocumentation(value = "解除绑定网站用户和MINI终端用户卡", placement = Placement.BINDING)
@@ -153,7 +122,7 @@ public interface IMiniService {
                          @WebParam(name = "userCardNum") String userCardNum,
                          @WebParam(name = "context") ApplicationContext context)
 			throws ServiceException;
-		
+
 	/**
 	 * 导入用户卡资源信息
 	 * @param cardResourceDTOs 用户卡资源List
@@ -278,7 +247,7 @@ public interface IMiniService {
 	public CardOrgDTO updateMiniCardOrg(
             @WebParam(name = "cardOrgDTO") CardOrgDTO cardOrgDTO,
             @WebParam(name = "context") ApplicationContext context) throws ServiceException;
-	
+
 	/**
 	 * 创建用户卡联名机构商户信息
 	 * @param cardOrgDTO
@@ -291,8 +260,8 @@ public interface IMiniService {
 	public CardOrgDTO createMiniCardOrg(
             @WebParam(name = "cardOrgDTO") CardOrgDTO cardOrgDTO,
             @WebParam(name = "context") ApplicationContext context) throws ServiceException,ApplicationException;
-	
-		
+
+
 	/**
 	 * 重置用户卡密码
 	 * @param cardNo
@@ -335,7 +304,7 @@ public interface IMiniService {
 	 * @throws ServiceException
 	 */
 	@WSDLDocumentation(value = "更换用户卡对应的联名卡商户标识的绑定关系", placement = Placement.BINDING)
-	@WebMethod(operationName = "ChangeCardOrg")		
+	@WebMethod(operationName = "ChangeCardOrg")
 	public String changeCardOrg(
             @WebParam(name = "cardInfoIds") Long[] cardInfoIds,
             @WebParam(name = "cardNos") String[] cardNos,
@@ -351,8 +320,8 @@ public interface IMiniService {
 	 * @throws ServiceException
 	 */
 	@WSDLDocumentation(value = "取得用户绑定关系变更的列表", placement = Placement.BINDING)
-	@WebMethod(operationName = "GetUserCardOperate")		
-	public  CardQueryResultDTO getUserCardOperate(
+	@WebMethod(operationName = "GetUserCardOperate")
+	public CardQueryResultDTO getUserCardOperate(
             @WebParam(name = "operateType") String[] operateType,
             @WebParam(name = "startTime") Date startTime,
             @WebParam(name = "endTime") Date endTime,
@@ -366,7 +335,7 @@ public interface IMiniService {
 	 * @throws ApplicationException
 	 */
 	@WSDLDocumentation(value = "停用或者关闭终端", placement = Placement.BINDING)
-	@WebMethod(operationName = "StopTerminal")		
+	@WebMethod(operationName = "StopTerminal")
 	public String stopTerminal(
             @WebParam(name = "cardInfoId") Long cardInfoId,
             @WebParam(name = "context") ApplicationContext context) throws ServiceException,ApplicationException;
@@ -379,7 +348,7 @@ public interface IMiniService {
 	 * @throws ApplicationException
 	 */
 	@WSDLDocumentation(value = "重新启用终端", placement = Placement.BINDING)
-	@WebMethod(operationName = "RestartTerminal")	
+	@WebMethod(operationName = "RestartTerminal")
 	public String restartTerminal(
             @WebParam(name = "cardInfoId") Long cardInfoId,
             @WebParam(name = "context") ApplicationContext context)throws ServiceException,ApplicationException;
@@ -392,7 +361,7 @@ public interface IMiniService {
 	 * @throws ApplicationException
 	 */
 	@WSDLDocumentation(value = "将网站用户和终端的关系强行解除绑定", placement = Placement.BINDING)
-	@WebMethod(operationName = "UnBindToUser")	
+	@WebMethod(operationName = "UnBindToUser")
 	public String unBindToUser(
             @WebParam(name = "cardInfoId") Long cardInfoId,
             @WebParam(name = "context") ApplicationContext context)throws ServiceException,ApplicationException;
@@ -404,11 +373,11 @@ public interface IMiniService {
 	 * @throws ApplicationException
 	 */
 	@WSDLDocumentation(value = " 查询联名卡机构规则信息", placement = Placement.BINDING)
-	@WebMethod(operationName = "GetCardOrgRules")	
+	@WebMethod(operationName = "GetCardOrgRules")
 	public CardOrgRuleResultDTO getCardOrgRules(
             @WebParam(name = "context") ApplicationContext context) throws ServiceException,ApplicationException;
 	/**
-	 * 
+	 *
 	 * @param psamNos
 	 * @param context
 	 * @return
@@ -416,7 +385,7 @@ public interface IMiniService {
 	 * @throws ApplicationException
 	 */
 	@WSDLDocumentation(value = "PSAM卡循环再利用", placement = Placement.BINDING)
-	@WebMethod(operationName = "RecyclePsams")	
+	@WebMethod(operationName = "RecyclePsams")
 	public String recyclePsams(
             @WebParam(name = "psamNos") String[] psamNos,
             @WebParam(name = "context") ApplicationContext context) throws ServiceException,ApplicationException;
@@ -429,7 +398,7 @@ public interface IMiniService {
 	 * @throws ApplicationException
 	 */
 	@WSDLDocumentation(value = "终端分发（发货）确认", placement = Placement.BINDING)
-	@WebMethod(operationName = "DeliverConfirm")	
+	@WebMethod(operationName = "DeliverConfirm")
 	public String deliverConfirm(
             @WebParam(name = "cardInfoIds") Long[] cardInfoIds,
             @WebParam(name = "context") ApplicationContext context)throws ServiceException,ApplicationException;
@@ -442,7 +411,7 @@ public interface IMiniService {
 	 * @throws ApplicationException
 	 */
 	@WSDLDocumentation(value = "撤销终端分发（发货）确认", placement = Placement.BINDING)
-	@WebMethod(operationName = "RevokeDeliverConfirm")	
+	@WebMethod(operationName = "RevokeDeliverConfirm")
 	public String revokeDeliverConfirm(
             @WebParam(name = "cardInfoIds") Long[] cardInfoIds,
             @WebParam(name = "context") ApplicationContext context)throws ServiceException,ApplicationException;
@@ -455,14 +424,14 @@ public interface IMiniService {
 	 * @throws ApplicationException
 	 */
 	@WSDLDocumentation(value = "退机", placement = Placement.BINDING)
-	@WebMethod(operationName = "RecedeTerminal")	
+	@WebMethod(operationName = "RecedeTerminal")
 	public String recedeTerminal(
             @WebParam(name = "cardInfoIds") Long[] cardInfoIds,
             @WebParam(name = "context") ApplicationContext context) throws ServiceException,ApplicationException;
 	/**
 	 * 根据查询参数查询取得PSAM卡的相关信息
 	 * @param cardQueryDTO  PSAM卡查询参数
-	 * @param resultType 
+	 * @param resultType
 	 * @param context
 	 * @return
 	 * @throws ServiceException
@@ -503,10 +472,10 @@ public interface IMiniService {
             @WebParam(name = "oldTelNo") String oldTelNo,
             @WebParam(name = "newTelNo") String newTelNo,
             @WebParam(name = "context") ApplicationContext context)throws ServiceException;
-	
+
 	/**
 	 * 迷你移机申请。如果当前已有已提交未审核的单子，则不能新建新的审核申请。
-	 * 获取当前审核单可以使用 
+	 * 获取当前审核单可以使用
 	 * {@link com.lakala.mini.service.IMiniService#transferMiniQuery}
 	 * @param apply 申请单
 	 * @return 申请接受结果
@@ -519,7 +488,7 @@ public interface IMiniService {
 	public TransferMiniApplyResultDTO transferMiniApply(
             @WebParam(name = "apply") TransferMiniApplyDTO apply
     )throws ServiceException,TransferMiniException;
-	
+
 	/**
 	 * 迷你移机申请审核
 	 * @param review 审核信息
@@ -533,7 +502,7 @@ public interface IMiniService {
 	public TransferMiniOrderDTO transferMiniReview(
             @WebParam(name = "review") TransferMiniReviewDTO review
     )throws ServiceException,TransferMiniException;
-	
+
 	/**
 	 * 迷你移机申请查询,按申请日期倒排
 	 * @param query 请求参数
@@ -567,13 +536,13 @@ public interface IMiniService {
 	 * @return 特殊号码分页列表
 	 * @throws ServiceException
 	 */
-	@WSDLDocumentation (value = "查询特殊号码列表", placement = Placement.BINDING)
+	@WSDLDocumentation(value = "查询特殊号码列表", placement = Placement.BINDING)
 	@WebMethod(operationName = "QuerySpecialTelNos")
 	public SpecialTelNoQueryResultDTO querySpecialTelNos(
             @WebParam(name = "specialTelNos") SpecialTelNoQueryDTO specialTelNoQueryDTO,
             @WebParam(name = "context") ApplicationContext context
     )throws ServiceException;
-	
+
 	/**
 	 * 人工开通
 	 * @param serviceParam
@@ -594,7 +563,7 @@ public interface IMiniService {
 	public ManuServiceResponse manuMove(
             @WebParam(name = "serviceParam") ManuServiceRequest serviceParam,
             @WebParam(name = "context") ApplicationContext context) throws ApplicationException;
-	
+
 	/**
 	 * 机构规则参数管理
 	 * @param ruleId 规则id
@@ -616,7 +585,7 @@ public interface IMiniService {
             , @WebParam(name = "paramValues") List<String> paramValues
             , @WebParam(name = "isAppend") boolean isAppend
             , @WebParam(name = "context") ApplicationContext context)throws ApplicationException;
-	
+
 	/**
 	 * 机构规则参数删除
 	 * @param id 规则序号
@@ -627,7 +596,7 @@ public interface IMiniService {
 	@WebMethod(operationName = "DeleteRuleParam")
 	public void deleteRuleParam(@WebParam(name = "id") List<Long> id
             , @WebParam(name = "context") ApplicationContext context)throws ApplicationException;
-	
+
 	/**
 	 * 机构规则参数查询
 	 * @param query 查询参数
@@ -639,12 +608,12 @@ public interface IMiniService {
 	@WebMethod(operationName = "QueryRuleParam")
 	public RuleParamsDTO queryRuleParam(@WebParam(name = "query") RuleParamQueryDTO query,
                                         @WebParam(name = "context") ApplicationContext context)throws ApplicationException;
-	
+
 	/**
 	 * 保存机构规则参数。如果id为空则新建，存在则更新
 	 * @param ruleParam 机构规则参数
 	 * @param context 上下文
-	 * @return 
+	 * @return
 	 * @throws ApplicationException
 	 * @since 1.3.0
 	 */
@@ -652,7 +621,7 @@ public interface IMiniService {
 	@WebMethod(operationName = "SaveRuleParam")
 	public SaveRuleParamResponse saveRuleParam(@WebParam(name = "ruleParam") RuleParamDTO ruleParam,
                                                @WebParam(name = "context") ApplicationContext context)throws ApplicationException;
-	
+
 	/**
 	 * @param cardInfoId 用户卡id
 	 * @param mobilePhone 手机号
@@ -665,7 +634,7 @@ public interface IMiniService {
 	public String resetUDPasswd(@WebParam(name = "cardInfoId") Long cardInfoId
             , @WebParam(name = "mobilePhone") String mobilePhone
             , @WebParam(name = "context") ApplicationContext context);
-	
+
 	/**
 	 * @param cardInfoId 用户卡id
 	 * @param mobilePhone 手机号
@@ -677,14 +646,14 @@ public interface IMiniService {
 	@WebMethod(operationName = "QueryCustomerInfo")
 	public CustomerInfosDTO queryCustomerInfo(@WebParam(name = "query") QueryUserInfoRequest query,
                                               @WebParam(name = "context") ApplicationContext context);
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * 根据U盾的PSAM卡号得到绑定的用户的UID
 	 * @param psamNo
 	 * @param context
-	 * @return 
+	 * @return
 	 * @throws ServiceException
 	 * @throws ApplicationException
 	 * @since 1.4.0
