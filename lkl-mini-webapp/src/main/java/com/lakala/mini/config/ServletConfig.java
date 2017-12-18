@@ -25,7 +25,7 @@ public class ServletConfig {
         DispatcherServlet dispatcherServlet = new DispatcherServlet();
         ServletRegistrationBean registrationBean = new ServletRegistrationBean(dispatcherServlet);
         registrationBean.setLoadOnStartup(1);
-        registrationBean.addUrlMappings("/service/*");
+        registrationBean.addUrlMappings("/*");
         registrationBean.setName("dubbo");
         return registrationBean;
     }

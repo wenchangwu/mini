@@ -35,10 +35,12 @@ public class JpaConfig {
     private String userName;
     @Value("${spring.datasource.password}")
     private String password;
-    @Value("${mini.jpa.databasePlatform}")
+    @Value("${jpa.databasePlatform}")
     private String databasePlatform;
 
     /**
+     * datasource configuration
+     *
      * @return
      */
     @Bean
@@ -48,11 +50,21 @@ public class JpaConfig {
         source.setUrl(url);
         source.setUsername(userName);
         source.setPassword(password);
+        source.setInitialSize(10);
+        source.setMinIdle(10);
+        source.setMaxActive(50);
+        source.setMaxWait(60000);
+        source.setTimeBetweenEvictionRunsMillis(60000);
+        source.setMinEvictableIdleTimeMillis(30000);
+        source.setValidationQuery("select 1 from dual");
+        source.setTestWhileIdle(true);
+        source.setTestOnBorrow(false);
+        source.setTestOnReturn(false);
         return source;
     }
 
     /**
-     * 2.配置EntityManagerFactory
+     * 配置EntityManagerFactory
      *
      * @return
      */
@@ -62,15 +74,12 @@ public class JpaConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setPersistenceUnitName("mini");
-        /*factory.setPersistenceXmlLocation("classpath:META-INF/persistence_mini.xml");*/
+        factory.setPersistenceXmlLocation("classpath:META-INF/persistence_mini.xml");
         // 配置数据源
         factory.setDataSource(dataSource);
         // VendorAdapter
         factory.setJpaVendorAdapter(hibernateJpaVendorAdapter());
         Map<String, Object> jpaProperties = new HashMap<String, Object>();
-        jpaProperties.put("hibernate.ejb.naming_strategy","org.hibernate.cfg.ImprovedNamingStrategy");
-        jpaProperties.put("hibernate.jdbc.batch_size",50);
-
 
         // entity包扫描路径
         factory.setPackagesToScan("com.lakala.mini.server.core.domain");

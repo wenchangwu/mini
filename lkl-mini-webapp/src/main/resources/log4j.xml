@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+
+	<appender name="DEBUG" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="10Mb" />
+		<param name="MaxBackupIndex" value="3" />
+		<param name="File" value="${mini.root}/../../logs/mini/root_debug.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="DEBUG" />
+		</filter>
+	</appender>
+
+	<appender name="INFO" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${mini.root}/../../logs/mini/root_info.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+			<param name="LevelMax" value="INFO" />
+		</filter>
+	</appender>
+
+	<appender name="WARN" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${mini.root}/../../logs/mini/root_warn.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="WARN" />
+		</filter>
+	</appender>
+
+	<appender name="ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${mini.root}/../../logs/mini/root_error.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<appender name="HIBERNATE_ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="File" value="${mini.root}/../../logs/mini/hibernate_error.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<appender name="HIBERNATE_DEBUG" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="10Mb" />
+		<param name="MaxBackupIndex" value="3" />
+		<param name="File" value="${mini.root}/../../logs/mini/hibernate_debug.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="DEBUG" />
+		</filter>
+	</appender>
+
+	<appender name="HIBERNATE_INFO" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="File" value="${mini.root}/../../logs/mini/hibernate_info.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+			<param name="LevelMax" value="INFO" />
+		</filter>
+	</appender>
+
+	<appender name="HIBERNATE_SQL" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="10Mb" />
+		<param name="MaxBackupIndex" value="3" />
+		<param name="File" value="${mini.root}/../../logs/mini/hibernate_sql.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="DEBUG" />
+		</filter>
+
+
+
+	</appender>
+
+	<appender name="CXF_LOG_INF" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="File" value="${mini.root}/../../logs/mini/cxf_info.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+			<param name="LevelMax" value="INFO" />
+		</filter>
+	</appender>
+	<appender name="CXF_LOG_WARN" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="File" value="${mini.root}/../../logs/mini/cxf_warn.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="WARN" />
+		</filter>
+	</appender>
+	<appender name="CXF_LOG_ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="File" value="${mini.root}/../../logs/mini/cxf_error.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+	
+	<appender name="CXF_LOG_DEBUG" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="10Mb" />
+		<param name="MaxBackupIndex" value="3" />
+		<param name="File" value="${mini.root}/../../logs/mini/cxf_debug.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p [%t] (%C:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="DEBUG" />
+		</filter>
+	</appender>
+	<category name="org.hibernate" additivity="false">
+		<priority value="debug" />
+		<appender-ref ref="HIBERNATE_INFO" />
+		<appender-ref ref="HIBERNATE_ERROR" />
+		<appender-ref ref="HIBERNATE_DEBUG" />
+	</category>
+	<category name="org.apache.cxf" additivity="false">
+		<priority value="debug" />
+		<appender-ref ref="CXF_LOG_INF" />
+		<appender-ref ref="CXF_LOG_WARN" />
+		<appender-ref ref="CXF_LOG_ERROR" />
+		<appender-ref ref="CXF_LOG_DEBUG" />
+	</category>
+
+	<category name="org.hibernate.SQL" additivity="false">
+		<priority value="debug" />
+		<appender-ref ref="HIBERNATE_SQL" />
+	</category>
+
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="DEBUG" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="WARN" />
+		<appender-ref ref="ERROR" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+
+</log4j:configuration>
